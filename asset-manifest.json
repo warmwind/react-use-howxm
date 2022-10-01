@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-use-howxm/static/css/main.2c6a48fe.chunk.css",
+    "main.js": "/react-use-howxm/static/js/main.26ba0e6a.chunk.js",
+    "main.js.map": "/react-use-howxm/static/js/main.26ba0e6a.chunk.js.map",
+    "runtime-main.js": "/react-use-howxm/static/js/runtime-main.1801121a.js",
+    "runtime-main.js.map": "/react-use-howxm/static/js/runtime-main.1801121a.js.map",
+    "static/js/2.ad2cc63e.chunk.js": "/react-use-howxm/static/js/2.ad2cc63e.chunk.js",
+    "static/js/2.ad2cc63e.chunk.js.map": "/react-use-howxm/static/js/2.ad2cc63e.chunk.js.map",
+    "index.html": "/react-use-howxm/index.html",
+    "precache-manifest.e46c928752ff2da5d336e99b610adf22.js": "/react-use-howxm/precache-manifest.e46c928752ff2da5d336e99b610adf22.js",
+    "service-worker.js": "/react-use-howxm/service-worker.js",
+    "static/css/main.2c6a48fe.chunk.css.map": "/react-use-howxm/static/css/main.2c6a48fe.chunk.css.map",
+    "static/js/2.ad2cc63e.chunk.js.LICENSE.txt": "/react-use-howxm/static/js/2.ad2cc63e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1801121a.js",
+    "static/js/2.ad2cc63e.chunk.js",
+    "static/css/main.2c6a48fe.chunk.css",
+    "static/js/main.26ba0e6a.chunk.js"
+  ]
+}
