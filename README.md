@@ -13,18 +13,26 @@ npm install --save react-use-howxm
 ## Usage
 
 ```tsx
-import * as React from 'react'
+const App = () => {
+  const appId = 'YOUR_APP_ID';
+  const myLogger = console.info; // optional
 
-import { useMyHook } from 'react-use-howxm'
+  const {initHowxm, identifyHowxm} = useHowxm()
+  useEffect(() => {
+    const isReady = initHowxm(appId, myLogger);
+    if (isReady) {
+      identifyHowxm({'uid': 'my-uid'});
+    }
+  }, [initHowxm, identifyHowxm]);
 
-const Example = () => {
-  const example = useMyHook()
   return (
     <div>
-      {example}
+      <h1>Howxm Example</h1>
     </div>
   )
 }
+export default App
+
 ```
 
 ## License
