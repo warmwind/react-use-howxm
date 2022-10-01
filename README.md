@@ -33,4 +33,5 @@ MIT © [warmwind](https://github.com/warmwind)
 
 ---
 
+This hook is inspired by [react-use-hotjar](https://github.com/olavoparno/react-use-hotjar).
 This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
