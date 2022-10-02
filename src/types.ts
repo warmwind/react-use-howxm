@@ -1,7 +1,6 @@
-export type TUserInfo = Record<
-  string,
-  string | number | Date | boolean
->;
+export type TCustomerInfo = Record<string, string | number | Date | boolean>;
+
+export type TAttribute = Record<string, string | number | Date | boolean>;
 
 export interface IUseHowxm {
   readyState: boolean;
@@ -10,9 +9,21 @@ export interface IUseHowxm {
     logCallback?: (...data: unknown[]) => void
   ) => boolean;
   identifyHowxm: (
-    userInfo: TUserInfo,
+    customerInfo: TCustomerInfo,
     logCallback?: (...data: unknown[]) => void
   ) => boolean;
+  checkHowxm: (
+    campaignId: string,
+    uid: string,
+    onSuccess?: () => void,
+    onFailed?: (errMsg?: string) => void
+  ) => void;
+  showHowxm: (
+    campaignId: string,
+    customer?: TCustomerInfo,
+    extra?: TAttribute,
+    onCompleted?: (data: { success: boolean; errMsg?: string }) => void
+  ) => void;
 }
 
 export interface IWindowHowxmEmbedded extends Window {
