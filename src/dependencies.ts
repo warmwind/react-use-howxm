@@ -25,7 +25,7 @@ export function initScript(appId: string): boolean {
   const hasWindow = typeof window !== "undefined";
   if (!hasWindow) throw Error("Howxm depends on window. Window is undefined.");
 
-  const scriptCode = `function _howxm(){_howxmQueue.push(arguments)} window._howxmQueue=window._howxmQueue||[]; _howxm("setAppID","${appId}"); (function(){var e=document.createElement("script"), t=document.getElementsByTagName("script")[0]; e.type="text/javascript"; e.defer=!0;e.src="http://localhost:4000/umd/sdk.js"; t.parentNode.insertBefore(e,t)})(); `;
+  const scriptCode = `function _howxm(){_howxmQueue.push(arguments)} window._howxmQueue=window._howxmQueue||[]; _howxm("setAppID","${appId}"); (function(){var e=document.createElement("script"), t=document.getElementsByTagName("script")[0]; e.type="text/javascript"; e.defer=!0;e.src="https://static.howxm.com/sdk.js"; t.parentNode.insertBefore(e,t)})(); `;
   const isAppended = appendHeadScript(scriptCode, "howxm-init-script");
   if (
     isAppended &&

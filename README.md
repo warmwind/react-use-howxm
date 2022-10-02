@@ -1,6 +1,6 @@
 # react-use-howxm
 
-> Adds Howxm capabilities as custom hooks&quot;
+> Adds Howxm capabilities as custom hooks
 
 [![NPM](https://img.shields.io/npm/v/react-use-howxm.svg)](https://www.npmjs.com/package/react-use-howxm) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
