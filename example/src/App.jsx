@@ -7,10 +7,11 @@ const myLogger = console.info;
 
 const App = () => {
   const { initHowxm, identifyHowxm, showHowxm, checkHowxm } = useHowxm();
-  const campaignId = "801e8eece8f9fc334726562a4d19e6e1";
+  const campaignId = "<Your Campaign ID>";
+  const appId = "<Your App ID>";
   const uid = "my-uid";
   useEffect(() => {
-    const isReady = initHowxm("d8874325-2d50-480b-9c59-458dd616736f", myLogger);
+    const isReady = initHowxm(appId, myLogger);
     if (isReady) {
       identifyHowxm({ uid });
     }
@@ -21,6 +22,7 @@ const App = () => {
       myLogger("showHowxm finished");
     });
   };
+
   const handleCheckClick = () => {
     checkHowxm(
       campaignId,
