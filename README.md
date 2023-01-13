@@ -14,7 +14,7 @@ npm install --save react-use-howxm
 
 ```tsx
 const App = () => {
-  const { initHowxm, identifyHowxm, showHowxm, checkHowxm } = useHowxm();
+  const { initHowxm, identifyHowxm, openHowxm, checkOpenHowxm } = useHowxm();
   const campaignId = "<Your Campaign ID>";
   const appId = "<Your App ID>";
   const uid = "my-uid";
@@ -26,20 +26,20 @@ const App = () => {
   }, [initHowxm, identifyHowxm]);
 
   const handleShowClick = () => {
-    showHowxm(campaignId, { uid }, {age: 30}, () => {
-      console.log("showHowxm finished");
+    openHowxm(campaignId, { uid }, {age: 30}, () => {
+      console.log("openHowxm finished");
     });
   };
 
   const handleCheckClick = () => {
-    checkHowxm(
+    checkOpenHowxm(
       campaignId,
       uid,
       () => {
-        console.log("checkHowxm success");
+        console.log("checkOpenHowxm success");
       },
       () => {
-        console.log("checkHowxm failed");
+        console.log("checkOpenHowxm failed");
       }
     );
   };

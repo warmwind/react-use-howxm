@@ -1,10 +1,10 @@
 import * as React from "react";
 import {
   checkReadyState,
-  checkScript,
+  checkOpenScript,
   identifyScript,
   initScript,
-  showScript,
+  openScript,
 } from "./dependencies";
 import { IUseHowxm, TAttribute, TCustomerInfo } from "./types";
 import { useCallback, useMemo } from "react";
@@ -53,7 +53,7 @@ export default function useHowxm(): IUseHowxm {
     []
   );
 
-  const checkHowxm = useCallback(
+  const checkOpenHowxm = useCallback(
     (
       campaignId: string,
       uid: string,
@@ -61,7 +61,7 @@ export default function useHowxm(): IUseHowxm {
       onFailed?: (errMsg?: string) => void
     ): void => {
       try {
-        checkScript(campaignId, uid, onSuccess, onFailed);
+        checkOpenScript(campaignId, uid, onSuccess, onFailed);
       } catch (error) {
         console.error(`Howxm error: ${(error as Error).message}`);
       }
@@ -69,7 +69,7 @@ export default function useHowxm(): IUseHowxm {
     []
   );
 
-  const showHowxm = useCallback(
+  const openHowxm = useCallback(
     (
       campaignId: string,
       customer?: TCustomerInfo,
@@ -77,7 +77,7 @@ export default function useHowxm(): IUseHowxm {
       onCompleted?: (data: { success: boolean; errMsg?: string }) => void
     ): void => {
       try {
-        showScript(campaignId, customer, extra, onCompleted);
+        openScript(campaignId, customer, extra, onCompleted);
       } catch (error) {
         console.error(`Howxm error: ${(error as Error).message}`);
       }
@@ -90,9 +90,9 @@ export default function useHowxm(): IUseHowxm {
       readyState,
       initHowxm,
       identifyHowxm,
-      checkHowxm,
-      showHowxm,
+      checkOpenHowxm,
+      openHowxm,
     }),
-    [readyState, initHowxm, identifyHowxm, checkHowxm, showHowxm]
+    [readyState, initHowxm, identifyHowxm, checkOpenHowxm, openHowxm]
   );
 }

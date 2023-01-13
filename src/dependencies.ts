@@ -25,7 +25,7 @@ export function initScript(appId: string): boolean {
   const hasWindow = typeof window !== "undefined";
   if (!hasWindow) throw Error("Howxm depends on window. Window is undefined.");
 
-  const scriptCode = `function _howxm(){_howxmQueue.push(arguments)} window._howxmQueue=window._howxmQueue||[]; _howxm("setAppID","${appId}"); (function(){var e=document.createElement("script"), t=document.getElementsByTagName("script")[0]; e.type="text/javascript"; e.defer=!0;e.src="https://static.howxm.com/sdk.js"; t.parentNode.insertBefore(e,t)})(); `;
+  const scriptCode = `function _howxm(){_howxmQueue.push(arguments)}window._howxmQueue=window._howxmQueue||[],_howxm("setAppID","${appId}"),function(){if(!document.getElementById("howxm_script")){var e=document.createElement("script"),t=document.getElementsByTagName("script")[0];e.setAttribute("id","howxm_script"),e.type="text/javascript",e.async=!0,e.src="https://static.howxm.com/sdk.js",t.parentNode.insertBefore(e,t)}}();`;
   const isAppended = appendHeadScript(scriptCode, "howxm-init-script");
   if (
     isAppended &&
@@ -50,7 +50,7 @@ export function identifyScript(customerInfo: TCustomerInfo): void {
   throw Error("Howxm is not available! Is Howxm initialized?");
 }
 
-export function showScript(
+export function openScript(
   campaignId: string,
   customer?: TCustomerInfo,
   extra?: TAttribute,
@@ -58,7 +58,7 @@ export function showScript(
 ): void {
   const hasWindow = typeof window !== "undefined";
   if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
-    return (window as unknown as IWindowHowxmEmbedded)._howxm("show", {
+    return (window as unknown as IWindowHowxmEmbedded)._howxm("open", {
       campaignId,
       customer,
       extra,
@@ -69,7 +69,7 @@ export function showScript(
   throw Error("Howxm is not available! Is Howxm initialized?");
 }
 
-export function checkScript(
+export function checkOpenScript(
   campaignId: string,
   uid: string,
   onSuccess?: () => void,
@@ -77,7 +77,7 @@ export function checkScript(
 ): void {
   const hasWindow = typeof window !== "undefined";
   if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
-    return (window as unknown as IWindowHowxmEmbedded)._howxm("check", {
+    return (window as unknown as IWindowHowxmEmbedded)._howxm("checkOpen", {
       campaignId,
       uid,
       onSuccess,

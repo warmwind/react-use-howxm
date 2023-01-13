@@ -6,7 +6,7 @@ import useHowxm from "react-use-howxm";
 const myLogger = console.info;
 
 const App = () => {
-  const { initHowxm, identifyHowxm, showHowxm, checkHowxm } = useHowxm();
+  const { initHowxm, identifyHowxm, openHowxm, checkOpenHowxm } = useHowxm();
   const campaignId = "<Your Campaign ID>";
   const appId = "<Your App ID>";
   const uid = "my-uid";
@@ -17,21 +17,21 @@ const App = () => {
     }
   }, [initHowxm, identifyHowxm]);
 
-  const handleShowClick = () => {
-    showHowxm(campaignId, { uid }, { price: 150 }, () => {
-      myLogger("showHowxm finished");
+  const handleOpenClick = () => {
+    openHowxm(campaignId, { uid }, { price: 150 }, () => {
+      myLogger("opwnHowxm finished");
     });
   };
 
-  const handleCheckClick = () => {
-    checkHowxm(
+  const handleCheckOpenClick = () => {
+    checkOpenHowxm(
       campaignId,
       uid,
       () => {
-        myLogger("checkHowxm success");
+        myLogger("checkOpenHowxm success");
       },
       () => {
-        myLogger("checkHowxm failed");
+        myLogger("checkOpenHowxm failed");
       }
     );
   };
@@ -39,8 +39,8 @@ const App = () => {
   return (
     <>
       <h1>Howxm SDK Example</h1>
-      <button onClick={handleShowClick}>Show</button>
-      <button onClick={handleCheckClick}>Check</button>
+      <button onClick={handleOpenClick}>Open</button>
+      <button onClick={handleCheckOpenClick}>CheckOpen</button>
     </>
   );
 };

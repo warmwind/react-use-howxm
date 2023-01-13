@@ -12,13 +12,13 @@ export interface IUseHowxm {
     customerInfo: TCustomerInfo,
     logCallback?: (...data: unknown[]) => void
   ) => boolean;
-  checkHowxm: (
+  checkOpenHowxm: (
     campaignId: string,
     uid: string,
     onSuccess?: () => void,
     onFailed?: (errMsg?: string) => void
   ) => void;
-  showHowxm: (
+  openHowxm: (
     campaignId: string,
     customer?: TCustomerInfo,
     extra?: TAttribute,
