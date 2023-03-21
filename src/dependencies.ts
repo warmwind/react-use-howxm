@@ -2,14 +2,21 @@ import { IWindowHowxmEmbedded, TAttribute, TCustomerInfo } from "./types";
 
 export const appendHeadScript = (
   scriptText: string,
-  scriptId: string
+  scriptId: string,
+  appId: string
 ): boolean => {
   try {
-    const existentScript = document.getElementById(
+    const existingScript = document.getElementById(
       scriptId
     ) as HTMLScriptElement;
-    const script = existentScript || document.createElement("script");
+	if(existingScript?.getAttribute('appId') === appId) {
+		return true;
+	} else  {
+		existingScript?.remove();
+	}
+    const script = document.createElement("script");
     script.id = scriptId;
+	script.setAttribute('appId', appId);
     script.innerText = scriptText;
     script.crossOrigin = "anonymous";
 
@@ -26,7 +33,7 @@ export function initScript(appId: string): boolean {
   if (!hasWindow) throw Error("Howxm depends on window. Window is undefined.");
 
   const scriptCode = `function _howxm(){_howxmQueue.push(arguments)}window._howxmQueue=window._howxmQueue||[],_howxm("setAppID","${appId}"),function(){if(!document.getElementById("howxm_script")){var e=document.createElement("script"),t=document.getElementsByTagName("script")[0];e.setAttribute("id","howxm_script"),e.type="text/javascript",e.async=!0,e.src="https://static.howxm.com/sdk.js",t.parentNode.insertBefore(e,t)}}();`;
-  const isAppended = appendHeadScript(scriptCode, "howxm-init-script");
+  const isAppended = appendHeadScript(scriptCode, "howxm-init-script", appId);
   if (
     isAppended &&
     hasWindow &&
