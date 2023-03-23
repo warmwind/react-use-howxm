@@ -9,14 +9,13 @@ export const appendHeadScript = (
     const existingScript = document.getElementById(
       scriptId
     ) as HTMLScriptElement;
-	if(existingScript?.getAttribute('appId') === appId) {
-		return true;
-	} else  {
-		existingScript?.remove();
-	}
+    if (existingScript) {
+      existingScript?.getAttribute('appId') !== appId && _howxm?.('updateHowxm', appId)
+      return true;
+    }
     const script = document.createElement("script");
     script.id = scriptId;
-	script.setAttribute('appId', appId);
+    script.setAttribute('appId', appId);
     script.innerText = scriptText;
     script.crossOrigin = "anonymous";
 
