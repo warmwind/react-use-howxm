@@ -33,12 +33,23 @@ describe('useHowxm hook', () => {
     expect(result.current.setExtraAttributes).toBeTruthy()
   })
 
-  it('should initHowxm', () => {
+  it('should initHowxm when howxm script not exited', () => {
     const { result } = renderHook(() => useHowxm())
     const initHowxmSpy = jest.spyOn(result.current, 'initHowxm')
     const { initHowxm } = result.current
     initHowxm(mockAppId)
     expect(initHowxmSpy).toHaveBeenCalledWith(mockAppId)
+  })
+
+  it('should updateHowxm when script exited and init with different appId', () => {
+    const { result } = renderHook(() => useHowxm())
+    const initHowxmSpy = jest.spyOn(result.current, 'initHowxm')
+    const { initHowxm } = result.current
+    initHowxm(mockAppId)
+    expect(initHowxmSpy).toHaveBeenCalledWith(mockAppId)
+
+    initHowxm('new-app-id')
+    expect(initHowxmSpy).toHaveBeenCalledWith('new-app-id')
   })
 
   it('should initHowxm with logCallback', () => {
