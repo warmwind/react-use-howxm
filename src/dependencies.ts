@@ -1,23 +1,17 @@
 import { IWindowHowxmEmbedded, TAttribute, TCustomerInfo } from './types'
 
-export const appendHeadScript = (
-  scriptText: string,
-  scriptId: string,
-  appId: string
-): boolean => {
+function appendHeadScript(scriptText: string, scriptId: string, appId: string): boolean {
   try {
-    const existingScript = document.getElementById(
-      scriptId
-    ) as HTMLScriptElement;
+    const existingScript = document.getElementById(scriptId) as HTMLScriptElement
     if (existingScript) {
       existingScript?.getAttribute('appId') !== appId && _howxm?.('updateHowxm', appId)
-      return true;
+      return true
     }
-    const script = document.createElement("script");
-    script.id = scriptId;
-    script.setAttribute('appId', appId);
-    script.innerText = scriptText;
-    script.crossOrigin = "anonymous";
+    const script = document.createElement('script')
+    script.id = scriptId
+    script.setAttribute('appId', appId)
+    script.innerText = scriptText
+    script.crossOrigin = 'anonymous'
 
     document.head.appendChild(script)
 
@@ -40,13 +34,16 @@ export function initScript(appId: string): boolean {
   throw Error('Howxm initialization failed!')
 }
 
+function throwNotInitializedError() {
+  throw Error('Howxm is not available! Is Howxm initialized?')
+}
+
 export function identifyScript(customerInfo: TCustomerInfo): void {
-  const hasWindow = typeof window !== 'undefined'
-  if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
+  if (checkReadyState()) {
     return (window as unknown as IWindowHowxmEmbedded)._howxm('identify', customerInfo)
   }
 
-  throw Error('Howxm is not available! Is Howxm initialized?')
+  throwNotInitializedError()
 }
 
 export function openScript(
@@ -55,8 +52,7 @@ export function openScript(
   extra?: TAttribute,
   onCompleted?: (data: { success: boolean; errMsg?: string }) => void
 ): void {
-  const hasWindow = typeof window !== 'undefined'
-  if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
+  if (checkReadyState()) {
     return (window as unknown as IWindowHowxmEmbedded)._howxm('open', {
       campaignId,
       customer,
@@ -64,8 +60,7 @@ export function openScript(
       onCompleted,
     })
   }
-
-  throw Error('Howxm is not available! Is Howxm initialized?')
+  throwNotInitializedError()
 }
 
 export function checkOpenScript(
@@ -74,8 +69,7 @@ export function checkOpenScript(
   onSuccess?: () => void,
   onFailed?: (errMsg?: string) => void
 ): void {
-  const hasWindow = typeof window !== 'undefined'
-  if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
+  if (checkReadyState()) {
     return (window as unknown as IWindowHowxmEmbedded)._howxm('checkOpen', {
       campaignId,
       uid,
@@ -83,7 +77,7 @@ export function checkOpenScript(
       onFailed,
     })
   }
-  throw Error('Howxm is not available! Is Howxm initialized?')
+  throwNotInitializedError()
 }
 
 export function checkReadyState(): boolean {
@@ -95,12 +89,12 @@ export function eventScript(eventCode: string, eventAttrs?: TAttribute) {
   if (checkReadyState()) {
     return (window as unknown as IWindowHowxmEmbedded)._howxm('event', eventCode, eventAttrs)
   }
-  throw Error('Howxm is not available! Is Howxm initialized?')
+  throwNotInitializedError()
 }
 
 export function setExtraAttributesScript(eventAttrs: TAttribute) {
   if (checkReadyState()) {
     return (window as unknown as IWindowHowxmEmbedded)._howxm('setExtraAttributes', eventAttrs)
   }
-  throw Error('Howxm is not available! Is Howxm initialized?')
+  throwNotInitializedError()
 }
