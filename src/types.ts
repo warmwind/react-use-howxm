@@ -24,6 +24,11 @@ export interface IUseHowxm {
     extra?: TAttribute,
     onCompleted?: (data: { success: boolean; errMsg?: string }) => void
   ) => void;
+  eventHowxm: (
+      eventCode: string,
+      eventAttrs?: TAttribute,
+      logCallback?: (...data: unknown[]) => void
+  ) => void;
 }
 
 export interface IWindowHowxmEmbedded extends Window {

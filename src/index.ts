@@ -4,7 +4,7 @@ import {
   checkOpenScript,
   identifyScript,
   initScript,
-  openScript,
+  openScript, eventScript,
 } from "./dependencies";
 import { IUseHowxm, TAttribute, TCustomerInfo } from "./types";
 import { useCallback, useMemo } from "react";
@@ -85,6 +85,24 @@ export default function useHowxm(): IUseHowxm {
     []
   );
 
+  const eventHowxm = useCallback(
+      (
+          eventCode: string,
+          eventAttrs?: TAttribute,
+          logCallback?: (...data: unknown[]) => void
+      ): void => {
+        try {
+          eventScript(eventCode, eventAttrs);
+          if (logCallback && typeof logCallback === "function") {
+            logCallback(`Howxm event trigger success.`);
+          }
+        } catch (error) {
+          console.error(`Howxm error: ${(error as Error).message}`);
+        }
+      },
+      []
+  );
+
   return useMemo(
     () => ({
       readyState,
@@ -92,7 +110,8 @@ export default function useHowxm(): IUseHowxm {
       identifyHowxm,
       checkOpenHowxm,
       openHowxm,
+      eventHowxm,
     }),
-    [readyState, initHowxm, identifyHowxm, checkOpenHowxm, openHowxm]
+    [readyState, initHowxm, identifyHowxm, checkOpenHowxm, openHowxm, eventHowxm]
   );
 }

@@ -98,3 +98,10 @@ export function checkReadyState(): boolean {
   const hasWindow = typeof window !== "undefined";
   return !!(hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm);
 }
+
+export function eventScript(eventCode: string, eventAttrs?: TAttribute,) {
+  if (checkReadyState()) {
+    return (window as unknown as IWindowHowxmEmbedded)._howxm("event", eventCode, eventAttrs);
+  }
+  throw Error("Howxm is not available! Is Howxm initialized?");
+}

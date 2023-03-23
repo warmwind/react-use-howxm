@@ -25,15 +25,21 @@ const App = () => {
 
   const handleCheckOpenClick = () => {
     checkOpenHowxm(
-      campaignId,
-      uid,
-      () => {
-        myLogger("checkOpenHowxm success");
-      },
-      () => {
-        myLogger("checkOpenHowxm failed");
-      }
+        campaignId,
+        uid,
+        () => {
+          myLogger("checkOpenHowxm success");
+        },
+        () => {
+          myLogger("checkOpenHowxm failed");
+        }
     );
+  };
+
+  const handleTriggerEvent = () => {
+    eventHowxm('test1', {}, () => {
+      myLogger("triggerEvent success");
+    });
   };
 
   return (
@@ -41,6 +47,7 @@ const App = () => {
       <h1>Howxm SDK Example</h1>
       <button onClick={handleOpenClick}>Open</button>
       <button onClick={handleCheckOpenClick}>CheckOpen</button>
+      <button onClick={handleTriggerEvent}>TriggerEvent</button>
     </>
   );
 };
