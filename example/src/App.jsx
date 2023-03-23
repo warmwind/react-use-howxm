@@ -7,9 +7,10 @@ const myLogger = console.info
 
 const App = () => {
   const { initHowxm, identifyHowxm, openHowxm, checkOpenHowxm, eventHowxm, setExtraAttributes } = useHowxm()
-  const campaignId = 'd2b44c1f68925adbfe03738b0ac9ecf9'
-  const appId = 'b3596cfb-9e91-4271-b5c0-c82fa8c3f0de'
+  const campaignId = '<Your Campaign ID>'
+  const appId = '<Your App ID>'
   const uid = 'my-uid'
+
   useEffect(() => {
     const isReady = initHowxm(appId, myLogger)
     if (isReady) {
@@ -19,7 +20,7 @@ const App = () => {
 
   const handleOpenClick = () => {
     openHowxm(campaignId, { uid }, { price: 150 }, () => {
-      myLogger('opwnHowxm finished')
+      myLogger('openHowxm finished')
     })
   }
 
@@ -43,9 +44,12 @@ const App = () => {
   }
 
   const handleSetExtraAttributes = () => {
-    setExtraAttributes({
-      plan: 'free',
-      age: 17,
+    const extraAttrs = {
+      plan: 'basic',
+      vip_level: '1',
+    }
+    setExtraAttributes(extraAttrs, () => {
+      myLogger('setExtraAttributes success')
     })
   }
 
