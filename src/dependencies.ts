@@ -99,9 +99,16 @@ export function checkReadyState(): boolean {
   return !!(hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm);
 }
 
-export function eventScript(eventCode: string, eventAttrs?: TAttribute,) {
+export function eventScript(eventCode: string, eventAttrs?: TAttribute) {
   if (checkReadyState()) {
     return (window as unknown as IWindowHowxmEmbedded)._howxm("event", eventCode, eventAttrs);
+  }
+  throw Error("Howxm is not available! Is Howxm initialized?");
+}
+
+export function setExtraAttributesScript(eventAttrs: TAttribute) {
+  if (checkReadyState()) {
+    return (window as unknown as IWindowHowxmEmbedded)._howxm("setExtraAttributes", eventAttrs);
   }
   throw Error("Howxm is not available! Is Howxm initialized?");
 }

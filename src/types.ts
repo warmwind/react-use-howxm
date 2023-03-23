@@ -29,6 +29,10 @@ export interface IUseHowxm {
       eventAttrs?: TAttribute,
       logCallback?: (...data: unknown[]) => void
   ) => void;
+  setExtraAttributes: (
+      extraAttrs: TAttribute,
+      logCallback?: (...data: unknown[]) => void
+  ) => void
 }
 
 export interface IWindowHowxmEmbedded extends Window {

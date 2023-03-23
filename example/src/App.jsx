@@ -6,9 +6,9 @@ import useHowxm from "react-use-howxm";
 const myLogger = console.info;
 
 const App = () => {
-  const { initHowxm, identifyHowxm, openHowxm, checkOpenHowxm } = useHowxm();
-  const campaignId = "<Your Campaign ID>";
-  const appId = "<Your App ID>";
+  const { initHowxm, identifyHowxm, openHowxm, checkOpenHowxm, eventHowxm, setExtraAttributes } = useHowxm();
+  const campaignId = "d2b44c1f68925adbfe03738b0ac9ecf9";
+  const appId = "b3596cfb-9e91-4271-b5c0-c82fa8c3f0de";
   const uid = "my-uid";
   useEffect(() => {
     const isReady = initHowxm(appId, myLogger);
@@ -42,12 +42,20 @@ const App = () => {
     });
   };
 
+  const handleSetExtraAttributes = () => {
+      setExtraAttributes({
+          plan: 'free',
+          age: 17
+      })
+  }
+
   return (
     <>
       <h1>Howxm SDK Example</h1>
       <button onClick={handleOpenClick}>Open</button>
       <button onClick={handleCheckOpenClick}>CheckOpen</button>
       <button onClick={handleTriggerEvent}>TriggerEvent</button>
+      <button onClick={handleSetExtraAttributes}>setExtraAttributes</button>
     </>
   );
 };

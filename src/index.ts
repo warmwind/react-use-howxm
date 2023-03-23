@@ -4,7 +4,7 @@ import {
   checkOpenScript,
   identifyScript,
   initScript,
-  openScript, eventScript,
+  openScript, eventScript, setExtraAttributesScript,
 } from "./dependencies";
 import { IUseHowxm, TAttribute, TCustomerInfo } from "./types";
 import { useCallback, useMemo } from "react";
@@ -103,6 +103,23 @@ export default function useHowxm(): IUseHowxm {
       []
   );
 
+  const setExtraAttributes = useCallback(
+      (
+          eventAttrs: TAttribute,
+          logCallback?: (...data: unknown[]) => void
+      ): void => {
+        try {
+          setExtraAttributesScript(eventAttrs);
+          if (logCallback && typeof logCallback === "function") {
+            logCallback(`Howxm set extra attributes success.`);
+          }
+        } catch (error) {
+          console.error(`Howxm error: ${(error as Error).message}`);
+        }
+      },
+      []
+  );
+
   return useMemo(
     () => ({
       readyState,
@@ -111,7 +128,8 @@ export default function useHowxm(): IUseHowxm {
       checkOpenHowxm,
       openHowxm,
       eventHowxm,
+      setExtraAttributes,
     }),
-    [readyState, initHowxm, identifyHowxm, checkOpenHowxm, openHowxm, eventHowxm]
+    [readyState, initHowxm, identifyHowxm, checkOpenHowxm, openHowxm, eventHowxm, setExtraAttributes]
   );
 }
