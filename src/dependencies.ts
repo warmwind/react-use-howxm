@@ -83,7 +83,6 @@ export function checkOpenScript(
       onFailed,
     })
   }
-
   throw Error('Howxm is not available! Is Howxm initialized?')
 }
 

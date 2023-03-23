@@ -23,7 +23,9 @@
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
-    "lint": "prettier --write ."
+    "lint": "prettier --write .",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "npm run test -- --coverage --watchAll=false"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -54,6 +56,6 @@
     "typescript": "^3.2.4"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write src/**/*.{ts,tsx} --ignore-unknown"
   }
 }

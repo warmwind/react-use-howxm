@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   checkReadyState,
   checkOpenScript,
@@ -9,7 +9,6 @@ import {
   setExtraAttributesScript,
 } from './dependencies'
 import { IUseHowxm, TAttribute, TCustomerInfo } from './types'
-import { useCallback, useMemo } from 'react'
 
 export default function useHowxm(): IUseHowxm {
   const isReadyState = checkReadyState()
