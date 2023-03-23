@@ -9,8 +9,8 @@ export const appendHeadScript = (
     const existingScript = document.getElementById(
       scriptId
     ) as HTMLScriptElement;
-    if (existingScript?.getAttribute('appId') === appId) {
-      _howxm?.('updateHowxm', appId)
+    if (existingScript) {
+      existingScript?.getAttribute('appId') !== appId && _howxm?.('updateHowxm', appId)
       return true;
     }
     const script = document.createElement("script");
