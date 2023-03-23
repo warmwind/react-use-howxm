@@ -22,7 +22,10 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "lint": "prettier --write .",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "npm run test -- --coverage --watchAll=false"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -41,6 +44,9 @@
     "@types/react": "^16.7.22",
     "cross-env": "^5.2.0",
     "gh-pages": "^2.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "2.8.6",
     "react": "^16.9.0",
     "react-scripts": "^3.4.0",
     "react-test-renderer": "^16.9.0",
@@ -48,5 +54,8 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "tslib": "^2.0.1",
     "typescript": "^3.2.4"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write src/**/*.{ts,tsx} --ignore-unknown"
   }
 }
