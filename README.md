@@ -14,35 +14,35 @@ npm install --save react-use-howxm
 
 ```tsx
 const App = () => {
-  const { initHowxm, identifyHowxm, openHowxm, checkOpenHowxm } = useHowxm();
-  const campaignId = "<Your Campaign ID>";
-  const appId = "<Your App ID>";
-  const uid = "my-uid";
+  const { initHowxm, identifyHowxm, openHowxm, checkOpenHowxm } = useHowxm()
+  const campaignId = '<Your Campaign ID>'
+  const appId = '<Your App ID>'
+  const uid = 'my-uid'
   useEffect(() => {
-    const isReady = initHowxm(appId);
+    const isReady = initHowxm(appId)
     if (isReady) {
-      identifyHowxm({ uid });
+      identifyHowxm({ uid })
     }
-  }, [initHowxm, identifyHowxm]);
+  }, [initHowxm, identifyHowxm])
 
   const handleShowClick = () => {
-    openHowxm(campaignId, { uid }, {age: 30}, () => {
-      console.log("openHowxm finished");
-    });
-  };
+    openHowxm(campaignId, { uid }, { age: 30 }, () => {
+      console.log('openHowxm finished')
+    })
+  }
 
   const handleCheckClick = () => {
     checkOpenHowxm(
       campaignId,
       uid,
       () => {
-        console.log("checkOpenHowxm success");
+        console.log('checkOpenHowxm success')
       },
       () => {
-        console.log("checkOpenHowxm failed");
+        console.log('checkOpenHowxm failed')
       }
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -50,10 +50,8 @@ const App = () => {
       <button onClick={handleShowClick}>Show</button>
       <button onClick={handleCheckClick}>Check</button>
     </>
-  );
-};
-
-
+  )
+}
 ```
 
 ## License

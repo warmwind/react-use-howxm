@@ -1,4 +1,4 @@
-import { IWindowHowxmEmbedded, TAttribute, TCustomerInfo } from "./types";
+import { IWindowHowxmEmbedded, TAttribute, TCustomerInfo } from './types'
 
 export const appendHeadScript = (
   scriptText: string,
@@ -19,41 +19,34 @@ export const appendHeadScript = (
     script.innerText = scriptText;
     script.crossOrigin = "anonymous";
 
-    document.head.appendChild(script);
+    document.head.appendChild(script)
 
-    return true;
+    return true
   } catch {
-    return false;
+    return false
   }
-};
+}
 
 export function initScript(appId: string): boolean {
-  const hasWindow = typeof window !== "undefined";
-  if (!hasWindow) throw Error("Howxm depends on window. Window is undefined.");
+  const hasWindow = typeof window !== 'undefined'
+  if (!hasWindow) throw Error('Howxm depends on window. Window is undefined.')
 
-  const scriptCode = `function _howxm(){_howxmQueue.push(arguments)}window._howxmQueue=window._howxmQueue||[],_howxm("setAppID","${appId}"),function(){if(!document.getElementById("howxm_script")){var e=document.createElement("script"),t=document.getElementsByTagName("script")[0];e.setAttribute("id","howxm_script"),e.type="text/javascript",e.async=!0,e.src="https://static.howxm.com/sdk.js",t.parentNode.insertBefore(e,t)}}();`;
-  const isAppended = appendHeadScript(scriptCode, "howxm-init-script", appId);
-  if (
-    isAppended &&
-    hasWindow &&
-    (window as unknown as IWindowHowxmEmbedded)._howxm
-  ) {
-    return true;
+  const scriptCode = `function _howxm(){_howxmQueue.push(arguments)}window._howxmQueue=window._howxmQueue||[],_howxm("setAppID","${appId}"),function(){if(!document.getElementById("howxm_script")){var e=document.createElement("script"),t=document.getElementsByTagName("script")[0];e.setAttribute("id","howxm_script"),e.type="text/javascript",e.async=!0,e.src="https://static.howxm.com/sdk.js",t.parentNode.insertBefore(e,t)}}();`
+  const isAppended = appendHeadScript(scriptCode, 'howxm-init-script', appId)
+  if (isAppended && hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
+    return true
   }
 
-  throw Error("Howxm initialization failed!");
+  throw Error('Howxm initialization failed!')
 }
 
 export function identifyScript(customerInfo: TCustomerInfo): void {
-  const hasWindow = typeof window !== "undefined";
+  const hasWindow = typeof window !== 'undefined'
   if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
-    return (window as unknown as IWindowHowxmEmbedded)._howxm(
-      "identify",
-      customerInfo
-    );
+    return (window as unknown as IWindowHowxmEmbedded)._howxm('identify', customerInfo)
   }
 
-  throw Error("Howxm is not available! Is Howxm initialized?");
+  throw Error('Howxm is not available! Is Howxm initialized?')
 }
 
 export function openScript(
@@ -62,17 +55,17 @@ export function openScript(
   extra?: TAttribute,
   onCompleted?: (data: { success: boolean; errMsg?: string }) => void
 ): void {
-  const hasWindow = typeof window !== "undefined";
+  const hasWindow = typeof window !== 'undefined'
   if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
-    return (window as unknown as IWindowHowxmEmbedded)._howxm("open", {
+    return (window as unknown as IWindowHowxmEmbedded)._howxm('open', {
       campaignId,
       customer,
       extra,
       onCompleted,
-    });
+    })
   }
 
-  throw Error("Howxm is not available! Is Howxm initialized?");
+  throw Error('Howxm is not available! Is Howxm initialized?')
 }
 
 export function checkOpenScript(
@@ -81,34 +74,34 @@ export function checkOpenScript(
   onSuccess?: () => void,
   onFailed?: (errMsg?: string) => void
 ): void {
-  const hasWindow = typeof window !== "undefined";
+  const hasWindow = typeof window !== 'undefined'
   if (hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm) {
-    return (window as unknown as IWindowHowxmEmbedded)._howxm("checkOpen", {
+    return (window as unknown as IWindowHowxmEmbedded)._howxm('checkOpen', {
       campaignId,
       uid,
       onSuccess,
       onFailed,
-    });
+    })
   }
 
-  throw Error("Howxm is not available! Is Howxm initialized?");
+  throw Error('Howxm is not available! Is Howxm initialized?')
 }
 
 export function checkReadyState(): boolean {
-  const hasWindow = typeof window !== "undefined";
-  return !!(hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm);
+  const hasWindow = typeof window !== 'undefined'
+  return !!(hasWindow && (window as unknown as IWindowHowxmEmbedded)._howxm)
 }
 
 export function eventScript(eventCode: string, eventAttrs?: TAttribute) {
   if (checkReadyState()) {
-    return (window as unknown as IWindowHowxmEmbedded)._howxm("event", eventCode, eventAttrs);
+    return (window as unknown as IWindowHowxmEmbedded)._howxm('event', eventCode, eventAttrs)
   }
-  throw Error("Howxm is not available! Is Howxm initialized?");
+  throw Error('Howxm is not available! Is Howxm initialized?')
 }
 
 export function setExtraAttributesScript(eventAttrs: TAttribute) {
   if (checkReadyState()) {
-    return (window as unknown as IWindowHowxmEmbedded)._howxm("setExtraAttributes", eventAttrs);
+    return (window as unknown as IWindowHowxmEmbedded)._howxm('setExtraAttributes', eventAttrs)
   }
-  throw Error("Howxm is not available! Is Howxm initialized?");
+  throw Error('Howxm is not available! Is Howxm initialized?')
 }
