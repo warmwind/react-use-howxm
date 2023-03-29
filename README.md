@@ -1,6 +1,6 @@
 # react-use-howxm
 
-> Adds [Howxm](https://howxm.com/) capabilities as custom hooks to your react project
+> Adds [Howxm](https://howxm.com/) capabilities as custom hooks to your React project
 
 [![NPM](https://img.shields.io/npm/v/react-use-howxm.svg)](https://www.npmjs.com/package/react-use-howxm)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -18,7 +18,7 @@ npm install --save react-use-howxm
 
 ```tsx
 import React from 'react'
-import { useHowxm } from 'react-use-howxm'
+import useHowxm from 'react-use-howxm'
 
 const myLogger = console.info
 
@@ -38,7 +38,7 @@ const HowxmReadyApp = () => {
 
 ```tsx
 import React from 'react'
-import { useHowxm } from 'react-use-howxm'
+import useHowxm from 'react-use-howxm'
 
 const myLogger = console.info
 
@@ -58,7 +58,7 @@ const MyCustomComponent = () => {
 
 ```tsx
 import React from 'react'
-import { checkOpenHowxm } from 'react-use-howxm'
+import useHowxm from 'react-use-howxm'
 
 const myLogger = console.info
 
@@ -86,7 +86,7 @@ const MyCustomComponent = () => {
 
 ```tsx
 import React from 'react'
-import { useHowxm } from 'react-use-howxm'
+import useHowxm from 'react-use-howxm'
 
 const myLogger = console.info
 
@@ -112,7 +112,7 @@ const MyCustomComponent = () => {
 
 ```tsx
 import React from 'react'
-import { eventHowxm } from 'react-use-howxm'
+import useHowxm from 'react-use-howxm'
 
 const myLogger = console.info
 
@@ -136,7 +136,7 @@ const MyCustomComponent = () => {
 
 ```tsx
 import React from 'react'
-import { setExtraAttributes } from 'react-use-howxm'
+import useHowxm from 'react-use-howxm'
 
 const myLogger = console.info
 
